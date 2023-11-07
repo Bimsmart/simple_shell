@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <string.h>
 
-void prompt(char **av, char **env)
+void prompt(char **av, char **env);
+char **_str_tok(char *str);
 
 #endif
