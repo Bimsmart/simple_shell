@@ -1,10 +1,9 @@
 #include "main.h"
-
 /**
  * main - entry
  * @argc: argument count
  * @argv: argument vector
- * @env: environent vaiable
+ * @env: environment vaiable
  *
  * Return: 0 for success
  */
