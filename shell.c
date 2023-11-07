@@ -11,6 +11,6 @@
 int main(int argc, char *argv[], char **env)
 {
 	if (argc == 1)
-		execve(argv, env);
+		prompt(argv, env);
 	return (0);
 }
