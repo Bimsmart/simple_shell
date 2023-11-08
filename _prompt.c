@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * prompt - creates shell prompt and stdin to exec func
@@ -21,7 +21,7 @@ void prompt(char **av, char **env)
 		num_char = getline(&str, &num, stdin);
 		if (num_char == -1)
 		{
-			free(string);
+			free(str);
 			exit(EXIT_FAILURE);
 		}
 		str_arr = _str_tok(str);
