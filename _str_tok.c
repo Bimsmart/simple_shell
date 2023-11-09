@@ -7,17 +7,26 @@
  */
 char **_str_tok(char *str)
 {
-	int i = 0, j = 0;
-	char *argv[] = {NULL, NULL};
-
+	int i, j = 0;
+	char **av, *s;
+	
+	av = malloc(8 * sizeof(char *));
+	if (av == NULL)
+	{
+		exit(1);
+	}
 	while (str[i])
 	{
 		if (str[i] == '\n')
-			str[i] = 0;
+			str[i] = '\0';
 		i++;
 	}
-	argv[j] = strtok(str, " ");
-	while (argv[j] != NULL)
-		argv[++j] == strtok(NULL, " ");
-	return (argv);
+	s = strtok(str, " ");
+	while (s != NULL)
+	{
+		av[j] = s;
+		j++;
+		s = strtok(NULL, " ");
+	}
+	return (av);
 }
