@@ -10,7 +10,7 @@ char **_str_tok(char *str)
 	int i, j = 0;
 	char **av, *s;
 	
-	av = malloc(8 * sizeof(char *));
+	av = malloc(MAX_COMMANDS * sizeof(char *));
 	if (av == NULL)
 	{
 		exit(1);
@@ -28,5 +28,7 @@ char **_str_tok(char *str)
 		j++;
 		s = strtok(NULL, " ");
 	}
+	av[j] = NULL;
+	printf("Got here in str_tok func\n");
 	return (av);
 }

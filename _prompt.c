@@ -9,7 +9,7 @@ void prompt(char **av, char **env)
 {
 	size_t num = 0;
 	ssize_t num_char;
-	char *str;
+	char *str = NULL;
 	char **str_arr;
 	int status;
 	pid_t child_pid;
@@ -18,7 +18,6 @@ void prompt(char **av, char **env)
 	{
 		if (isatty(STDIN_FILENO))
 			printf("cisfun$ ");
-		str = malloc(sizeof(char) * MAX_COMMAND);
 		num_char = getline(&str, &num, stdin);
 		if (num_char == -1)
 		{

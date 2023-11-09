@@ -7,7 +7,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <string.h>
-#define MAX_COMMAND 10
+#define MAX_COMMANDS 10
 
 void prompt(char **av, char **env);
 char **_str_tok(char *str);
