@@ -11,5 +11,6 @@
 
 void prompt(char **av, char **env);
 char **_str_tok(char *str);
+int _strcmp(const char *s1, const char *s2);
 
 #endif

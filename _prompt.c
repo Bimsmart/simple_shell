@@ -27,6 +27,10 @@ void prompt(char **av, char **env)
 		if (*str != '\n')
 		{
 			str_arr = _str_tok(str);
+			if (_strcmp("exit", str_arr[0]) == 0)
+			{
+				break;
+			}
 			child_pid = fork();
 			if (child_pid == -1)
 			{
@@ -36,7 +40,7 @@ void prompt(char **av, char **env)
 			}
 			if (child_pid == 0)
 			{
-				if (execve(str_arr[0], av, env) == -1)
+				if (execve(str_arr[0], str_arr, env) == -1)
 					printf("%s: No such file or directory\n", av[0]);
 			} else
 				wait(&status);
