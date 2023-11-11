@@ -9,7 +9,7 @@ void prompt(char **av, char **env)
 {
 	size_t num = 0;
 	ssize_t num_char;
-	char *str = NULL;
+	char *str = NULL, *tmp;
 	char **str_arr;
 	int status;
 	pid_t child_pid;
@@ -31,6 +31,9 @@ void prompt(char **av, char **env)
 			{
 				break;
 			}
+			tmp = check_file(str_arr[0]);
+			if (tmp != NULL)
+				str_arr[0] = tmp;
 			child_pid = fork();
 			if (child_pid == -1)
 			{
