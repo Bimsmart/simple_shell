@@ -13,6 +13,7 @@ void prompt(char **av, char **env)
 	char **str_arr;
 	int status;
 	pid_t child_pid;
+	size_t pt;
 
 	while (1)
 	{
@@ -34,6 +35,7 @@ void prompt(char **av, char **env)
 			tmp = check_file(str_arr[0]);
 			if (tmp != NULL)
 				str_arr[0] = tmp;
+			pt = check_path(string[0]);		
 			child_pid = fork();
 			if (child_pid == -1)
 			{
