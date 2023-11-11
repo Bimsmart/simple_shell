@@ -7,13 +7,12 @@
  */
 void prompt(char **av, char **env)
 {
-	size_t num = 0;
+	size_t num = 0, pt;
 	ssize_t num_char;
 	char *str = NULL, *tmp;
 	char **str_arr;
 	int status;
 	pid_t child_pid;
-	size_t pt;
 
 	while (1)
 	{
@@ -34,21 +33,10 @@ void prompt(char **av, char **env)
 			}
 			tmp = check_file(str_arr[0]);
 			if (tmp != NULL)
-				str_arr[0] = tmp;
-			pt = check_path(string[0]);		
-			child_pid = fork();
-			if (child_pid == -1)
-			{
-				free(str);
-				free(str_arr);
-				exit(EXIT_FAILURE);
-			}
-			if (child_pid == 0)
-			{
-				if (execve(str_arr[0], str_arr, env) == -1)
-					printf("%s: No such file or directory\n", av[0]);
-			} else
-				wait(&status);
+			str_arr[0] = tmp;
+			pt = check_path(string[0]);
+			if (pt == 1)
+				fork_exec(str_arr, env);
 		}
 	}
 	free(str_arr);
