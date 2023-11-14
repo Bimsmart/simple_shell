@@ -3,7 +3,7 @@
  * _strcmp - this function compares two strings
  * @s1: first string
  * @s2: second string
- * return: 0 if same or 1 or -1 otherwise
+ * Return: 0 if same or 1 or -1 otherwise
  */
 int _strcmp(const char *s1, const char *s2)
 {

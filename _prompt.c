@@ -11,8 +11,6 @@ void prompt(char **av, char **env)
 	ssize_t num_char;
 	char *str = NULL, *tmp;
 	char **str_arr;
-	int status;
-	pid_t child_pid;
 
 	while (1)
 	{
@@ -31,12 +29,22 @@ void prompt(char **av, char **env)
 			{
 				break;
 			}
+			printf("quarter check");
 			tmp = check_file(str_arr[0]);
+			printf("half check");
 			if (tmp != NULL)
-			str_arr[0] = tmp;
-			pt = check_path(string[0]);
-			if (pt == 1)
-				fork_exec(str_arr, env);
+				str_arr[0] = tmp;
+			else
+				pt = check_path(str_arr[0]);
+			printf("first check");
+			if (pt == 1 || tmp)
+			{
+				printf("second check");
+				exec_commands(av, str_arr, env);
+			}
+			printf("third check");
+			if (pt == 0 && tmp == NULL)
+				printf("./shell: No such file or directory\n");
 		}
 	}
 	free(str_arr);

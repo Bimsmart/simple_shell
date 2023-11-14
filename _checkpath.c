@@ -8,13 +8,13 @@
 int check_path(char *str)
 {
 	char *bin_str = "/bin/", *pt, *tmp;
-	int i, j;
+	int i = 0, j = 0;
 
 	pt = malloc(sizeof(char *) * 50);
 	if (pt == NULL)
+	{
 		return (0);
-	i = 0;
-	j = 0;
+	}
 	while (bin_str[i] != '\0')
 	{
 		if (bin_str[i] != str[i])

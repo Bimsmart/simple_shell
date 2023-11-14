@@ -4,7 +4,7 @@
 /**
  * check_file - Function to check if system cmd exist. if so avoid fork calling
  * @str: string to apply the check
- * Return : concatenated path string or null if false
+ * Return: concatenated path string or null if false
  */
 char *check_file(char *str)
 {
@@ -17,7 +17,7 @@ char *check_file(char *str)
 	ent = readdir(dir);
 	while (ent !=  NULL)
 	{
-		tmp = entity->d_name;
+		tmp = ent->d_name;
 		if (_strcmp(tmp, str) == 0)
 		{
 			str_cats = strcat("/bin/", str);
