@@ -12,6 +12,7 @@ char *check_file(char *str)
 	DIR *dir = opendir("/bin/");
 	struct dirent *ent;
 
+	str_cats = malloc(sizeof(char) * (strlen(str) + strlen("/bin/")));
 	if (dir == NULL)
 		return (NULL);
 	ent = readdir(dir);
@@ -20,12 +21,14 @@ char *check_file(char *str)
 		tmp = ent->d_name;
 		if (_strcmp(tmp, str) == 0)
 		{
-			str_cats = strcat("/bin/", str);
+			strcpy(str_cats, "/bin/");
+			str_cats = strcat(str_cats, str);
 			closedir(dir);
 			return (str_cats);
 		}
 		ent = readdir(dir);
 	}
 	closedir(dir);
+	free(str_cats);
 	return (NULL);
 }

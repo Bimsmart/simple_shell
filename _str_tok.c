@@ -13,6 +13,7 @@ char **_str_tok(char *str)
 	av = malloc(MAX_COMMANDS * sizeof(char *));
 	if (av == NULL)
 	{
+		free(av);
 		exit(1);
 	}
 	while (str[i])

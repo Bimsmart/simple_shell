@@ -13,6 +13,7 @@ int check_path(char *str)
 	pt = malloc(sizeof(char *) * 50);
 	if (pt == NULL)
 	{
+		free(pt);
 		return (0);
 	}
 	while (bin_str[i] != '\0')
@@ -34,8 +35,11 @@ int check_path(char *str)
 	tmp = check_file(pt);
 	if (tmp != NULL)
 	{
+		free(tmp);
 		free(pt);
 		return (1);
 	}
+	free(tmp);
+	free(pt);
 	return (0);
 }

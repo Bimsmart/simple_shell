@@ -10,6 +10,7 @@ void prompt(char **av, char **env)
 	size_t num = 0, pt;
 	ssize_t num_char;
 	char *str = NULL, *tmp, **str_arr;
+	int i = 0;
 
 	while (1)
 	{
@@ -26,23 +27,24 @@ void prompt(char **av, char **env)
 			str_arr = _str_tok(str);
 			if (_strcmp("exit", str_arr[0]) == 0)
 				break;
-			printf("quarter check");
 			tmp = check_file(str_arr[0]);
-			printf("half check");
 			if (tmp != NULL)
 				str_arr[0] = tmp;
 			else
 				pt = check_path(str_arr[0]);
-			printf("first check");
 			if (pt == 1 || tmp)
 			{
-				printf("second check");
 				exec_commands(av, str_arr, env);
 			}
-			printf("third check");
 			if (pt == 0 && tmp == NULL)
 				printf("./shell: No such file or directory\n");
 		}
+	}
+	free(tmp);
+	while (str_arr[i] != NULL)
+	{
+		free(str_arr[i]);
+		i++;
 	}
 	free(str_arr);
 	free(str);
