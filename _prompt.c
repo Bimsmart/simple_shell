@@ -9,8 +9,7 @@ void prompt(char **av, char **env)
 {
 	size_t num = 0, pt;
 	ssize_t num_char;
-	char *str = NULL, *tmp;
-	char **str_arr;
+	char *str = NULL, *tmp, **str_arr;
 
 	while (1)
 	{
@@ -26,9 +25,7 @@ void prompt(char **av, char **env)
 		{
 			str_arr = _str_tok(str);
 			if (_strcmp("exit", str_arr[0]) == 0)
-			{
 				break;
-			}
 			printf("quarter check");
 			tmp = check_file(str_arr[0]);
 			printf("half check");
