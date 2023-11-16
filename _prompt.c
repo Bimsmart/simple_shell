@@ -7,7 +7,7 @@
  */
 void prompt(char **av, char **env)
 {
-	size_t num = 0, pt;
+	size_t num = 0, imbt, pt;
 	ssize_t num_char;
 	char *str = NULL, *tmp, **str_arr;
 	int i = 0;
@@ -25,8 +25,7 @@ void prompt(char **av, char **env)
 		if (*str != '\n')
 		{
 			str_arr = _str_tok(str);
-			if (_strcmp("exit", str_arr[0]) == 0)
-				break;
+			imbt = match_builtin(str_arr);
 			tmp = check_file(str_arr[0]);
 			if (tmp != NULL)
 				str_arr[0] = tmp;
@@ -36,7 +35,7 @@ void prompt(char **av, char **env)
 			{
 				exec_commands(av, str_arr, env);
 			}
-			if (pt == 0 && tmp == NULL)
+			if (imbt == 0 && pt != 1 && tmp == NULL)
 				printf("./shell: No such file or directory\n");
 		}
 	}

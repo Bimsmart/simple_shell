@@ -11,7 +11,7 @@ void exec_commands(char **av, char **str_arr, char *env[])
 	int status;
 	pid_t child_pid;
 	char *erro_message;
-	
+
 	erro_message = strcat(av[0], ": No such file or directory\n");
 	child_pid = fork();
 	if (child_pid < 0)
