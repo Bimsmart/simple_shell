@@ -9,13 +9,12 @@ void prompt(char **av, char **env)
 {
 	size_t num = 0, imbt, pt;
 	ssize_t num_char;
-	char *str = NULL, *tmp, **str_arr;
-	int i = 0;
+	char *str = NULL, *error_message, *tmp, **str_arr;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("cisfun$ ");
+			write(STDOUT_FILENO, "#cisfun$ ", 10);
 		num_char = getline(&str, &num, stdin);
 		if (num_char == -1)
 		{
@@ -26,6 +25,7 @@ void prompt(char **av, char **env)
 		{
 			str_arr = _str_tok(str);
 			imbt = match_builtin(str_arr);
+			error_message = _strcat(str_arr[0], ": command not found\n");
 			tmp = check_file(str_arr[0]);
 			if (tmp != NULL)
 				str_arr[0] = tmp;
@@ -34,18 +34,12 @@ void prompt(char **av, char **env)
 			if (pt == 1 || tmp)
 			{
 				exec_commands(av, str_arr, env);
+				if (isatty(STDIN_FILENO) == 0)
+					exit(EXIT_SUCCESS);
 			}
 			if (imbt == 0 && pt != 1 && tmp == NULL)
-				printf("./shell: No such file or directory\n");
+				write(STDERR_FILENO, error_message, _strlen(error_message));
 		}
 	}
-	free(tmp);
-	while (str_arr[i] != NULL)
-	{
-		free(str_arr[i]);
-		i++;
-	}
-	free(str_arr);
-	free(str);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
